@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HifzMate - Quran with Tajweed & Planner</title>
+  <link rel="stylesheet" href="style.css?v=4.5" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="HifzMate - A comprehensive Quran study app with Tajweed, memorization planner, quizzes, and progress tracking">
+  <meta name="theme-color" content="#2c5530">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1><img src="logo.png" alt="HifzMate Logo" class="logo"></h1>
+      <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+    <nav>
+      <button class="tab-btn active" data-section="reader">📖 Quran Reader</button>
+      <button class="tab-btn" data-section="planner">🗓️ Planner</button>
+      <button class="tab-btn" data-section="quiz">🧠 Quiz</button>
+      <button class="tab-btn" data-section="bookmarks">🔖 Bookmarks</button>
+      <button class="tab-btn" data-section="badges">🏆 Badges</button>
+    </nav>
+  </header>
+
+  <!-- Quran Reader -->
+  <section id="section-reader" class="tab-section active">
+    <div class="surah-header">
+      <h2 id="surahTitleArabic" class="arabic-title">سُورَةُ الْفَاتِحَةِ</h2>
+      <h3 id="surahTitleEnglish" class="english-title">Al-Faatiha</h3>
+    </div>
+    
+    <div id="controls">
+      <div class="control-group">
+        <label for="qariSelector">🎵 Qari:</label>
+        <select id="qariSelector"></select>
+      </div>
+      <div class="control-group">
+        <label for="surahSelector">📖 Surah:</label>
+        <select id="surahSelector"></select>
+      </div>
+      <div class="control-group">
+        <label for="ayahSelector">🔢 Ayah:</label>
+        <select id="ayahSelector"></select>
+      </div>
+      <div class="control-group">
+        <button id="prevSurah">⬅️ Previous</button>
+        <button id="nextSurah">Next ➡️</button>
+        <button id="showTajweedBtn">🎨 Toggle Tajweed</button>
+      </div>
+    </div>
+    
+    <div id="ayahs-container"></div>
+  </section>
+
+  <!-- Planner -->
+  <section id="section-planner" class="tab-section">
+    <h2>🗓️ Memorization Planner</h2>
+    <div class="planner-form">
+      <div class="form-group">
+        <label for="planName">📝 Plan Name:</label>
+        <input type="text" id="planName" placeholder="My Ramadan Goal" />
+      </div>
+      <div class="form-group">
+        <label for="surahDropdown">📖 Surah:</label>
+        <select id="surahDropdown"></select>
+      </div>
+      <div class="form-group">
+        <label for="paceInput">⚡ Pace (Ayahs/day):</label>
+        <input type="number" id="paceInput" min="1" max="10" value="3" />
+      </div>
+      <button id="addPlanBtn" class="primary-btn">➕ Add Plan</button>
+    </div>
+    
+    <div id="plansContainer" class="plans-list"></div>
+  </section>
+
+  <!-- Quiz -->
+  <section id="section-quiz" class="tab-section">
+    <h2>🧠 Quran Quiz</h2>
+    <div id="quizContainer" class="quiz-container">
+      <div class="quiz-question">
+        <p id="quizQuestion" class="question-text"></p>
+        <input type="text" id="quizAnswer" placeholder="Your answer..." class="quiz-input" />
+        <div class="quiz-actions">
+          <button id="submitAnswer" class="primary-btn">✅ Submit</button>
+          <button id="nextQuestion" class="secondary-btn hidden">➡️ Next Question</button>
+        </div>
+        <div class="quiz-feedback">
+          <p id="quizFeedback" class="feedback-text"></p>
+          <p id="quizScore" class="score-text"></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mistakes-section">
+      <h3>❌ My Mistakes</h3>
+      <ul id="mistakeList" class="mistakes-list"></ul>
+      <button id="clearMistakes" class="danger-btn">🗑️ Clear Mistakes</button>
+    </div>
+  </section>
+
+  <!-- Bookmarks -->
+  <section id="section-bookmarks" class="tab-section">
+    <h2>🔖 My Bookmarks</h2>
+    <div class="bookmarks-container">
+      <ul id="bookmarkList" class="bookmarks-list"></ul>
+      <button id="clearBookmarks" class="danger-btn">🗑️ Clear All Bookmarks</button>
+    </div>
+  </section>
+
+  <!-- Badges -->
+  <section id="section-badges" class="tab-section">
+    <h2>🏆 My Achievements</h2>
+    <div id="badgeContainer" class="badges-grid"></div>
+  </section>
+
+  <!-- Floating Reminder -->
+  <div id="reviewReminder" class="reminder-popup hidden">
+    <div class="reminder-header">
+      <span id="closeReminder" class="close-btn">✖</span>
+    </div>
+    <div class="reminder-content">
+      <p id="reminderText">Time to revise your memorization!</p>
+      <button id="reviseNow" class="primary-btn">📚 Revise Now</button>
+    </div>
+  </div>
+
+  <script src="script.js?v=4.5"></script>
+</body>
+</html>
